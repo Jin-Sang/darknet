@@ -974,13 +974,23 @@ extern "C" void draw_detections_cv_v3(mat_cv* mat, detection *dets, int num, flo
         		//object accuracy is over 90% and object name is 'cow'
         			
         			cv::Mat cutImage ; // saving image
-        			cutImage = subImage(cv::Range(top, bot), cv::Range(left, right)) ; // image cut
+        			cutImage = subImage(cv::Range(top+20, bot-20), cv::Range(left-20, right+20)) ; // image cut
         
         			char filename[100] ;
         			sprintf(filename, "/content/darknet/cut_video/%d-%s-%d.jpg", frame_id, img_name, i) ;
         			//file name and save point
         			
         			imwrite(filename, cutImage) ; //cutting image save the file
+                    
+                     FILE* stream; //파일 포인터를 선언한다.
+                  char labelfilename[100];
+                  sprintf(labelfilename, "/content/darknet/cut_label/%d-%s-%d.txt", frame_id, img_name, i);
+
+                  stream = fopen(labelfilename, "w"); //.txt를 쓰기용으로 연다.
+                  char str[] = "0 0.5 0.5 1.0 1.0";
+                  fputs(str, stream);
+
+                  fclose(stream); //파일을 닫는다.
         		}
         		/*add code end*/
 
