@@ -974,7 +974,7 @@ extern "C" void draw_detections_cv_v3(mat_cv* mat, detection *dets, int num, flo
         		//object accuracy is over 90% and object name is 'cow'
         			
         			cv::Mat cutImage ; // saving image
-        			cutImage = subImage(cv::Range(top-20, bot-20), cv::Range(left-20, right+20)) ; // image cut
+        			cutImage = subImage(cv::Range(top-20, bot+20), cv::Range(left-20, right+20)) ; // image cut
         
         			char filename[100] ;
         			sprintf(filename, "/content/darknet/cut_video/%d-%s-%d.jpg", frame_id, img_name, i) ;
